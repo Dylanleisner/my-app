@@ -49,6 +49,14 @@ class Register extends Component {
       })
       .catch((error) => this.setState({ errors: error }));
   }
+  onImageUpload(url){
+    this.setState({
+        foto_perfil: url,
+        showCamera: false,
+    })
+    
+}
+
 
   render() {
     return (
@@ -83,15 +91,11 @@ class Register extends Component {
           onChangeText={(text) => this.setState({ errors: '', mini_bio: text })}
           value={this.state.mini_bio}
         />
-        { this.state.showCamera ?
-                        <View style={{width: '100vw', heigth: '100vh'}}>
-                            <MyCamera onImageUpload={url => this.onImageUpload(url)}/> 
-                        </View> 
-                        :
+    
                         <TouchableOpacity onPress={()=> this.setState({showCamera:true})}>
                             <Text style={styles.textInpu} > Subir foto de perfil</Text>
                         </TouchableOpacity>
-                    }
+                    
 
                     {
                     this.state.email == '' || this.state.pass == '' || this.state.nombre_usuario == ''  || this.state.foto_perfil == '' ?
