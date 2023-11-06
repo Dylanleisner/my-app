@@ -18,6 +18,8 @@ class Login extends Component{
         )
     }
 }
+ama[m
+]
 
 export default Login;
 
