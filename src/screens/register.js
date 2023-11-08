@@ -8,6 +8,7 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native';
+import MyCamera from '../components/my-camera/my-camera';
 
 class Register extends Component {
   constructor() {
@@ -62,6 +63,7 @@ class Register extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.titulo}>REGISTRO</Text>
+        <MyCamera/>
         <TextInput
           style={styles.textInput}
           placeholder="Email"
