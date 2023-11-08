@@ -16,12 +16,25 @@ class MyCamera extends Component {
     componentDidMount(){
         Camera.requestCameraPermissionsAsync()
              .then( () => {
+                console.log("renderizado")
                  this.setState({
                      permisos: true
                  })
              } )
              .catch( e => console.log(e)) 
      } 
+     sacarFoto(){
+        this.metodosDeCamera.takePictureAsync()
+        .then(foto => {
+            console.log("foto", foto)
+            this.setState({
+            
+                urlInternaFoto: foto.uri,
+                mostrarCamara: false
+            })
+        })
+        .catch(e => console.log(e))
+     }
     render(){
         return(
             <View style={ styles.container}>
@@ -30,8 +43,13 @@ class MyCamera extends Component {
                     ref= { metodosDeCamara => this.metodosDeCamara = metodosDeCamara}
                     style = { styles.cameraBody }
                 />
-                <TouchableOpacity  style = { styles.button }>
-                    <Text>Sacar Foto</Text>
+                  {/* <Image
+                            style={styles.preview}
+                            source={{uri: this.state.urlTemporal}}
+                            resizeMode='cover'
+                        /> */}
+                <TouchableOpacity onPress={(this.sacarFoto)} style = { styles.button }>
+                    <Text >Sacar Foto</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -44,7 +62,7 @@ class MyCamera extends Component {
 
 const styles = StyleSheet.create({
     container:{
-        //flex:1,
+        flex:1,
     },
     cameraBody: {
         flex:4

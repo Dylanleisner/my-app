@@ -27,6 +27,7 @@ class Register extends Component {
     auth
       .createUserWithEmailAndPassword(email, pass)
       .then((res) => {
+        console.log("autentificacion hecha")
         db.collection('usuarios')
           .add({
             owner: email,
@@ -45,6 +46,7 @@ class Register extends Component {
               showCamera: false,
             });
             this.props.navigation.navigate('Login');
+            console.log("entre")
           })
           .catch((error) => console.log(error));
       })
