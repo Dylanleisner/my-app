@@ -63,7 +63,7 @@ class Register extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.titulo}>REGISTRO</Text>
-        <mycamera/>
+        <MyCamera/>
         <TextInput
           style={styles.textInput}
           placeholder="Email"
