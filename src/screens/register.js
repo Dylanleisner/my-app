@@ -91,16 +91,6 @@ class Register extends Component {
           onChangeText={(text) => this.setState({ errors: '', mini_bio: text })}
           value={this.state.mini_bio}
         />
-    
-                        <TouchableOpacity onPress={()=> this.setState({showCamera:true})}>
-                            <Text style={styles.textInpu} > Subir foto de perfil</Text>
-                        </TouchableOpacity>
-                    
-
-                    {
-                    this.state.email == '' || this.state.pass == '' || this.state.nombre_usuario == ''  || this.state.foto_perfil == '' ?
-                    <Text > Completar los campos</Text> 
-                    :
                      
         
                 <TouchableOpacity
@@ -117,7 +107,7 @@ class Register extends Component {
                 >
                 <Text>REGISTRARME</Text>
                 </TouchableOpacity>
-                 }
+                 {/* } */}
         <Text style={styles.errorText}>{this.state.errors.message}</Text>
       </View>
     );
