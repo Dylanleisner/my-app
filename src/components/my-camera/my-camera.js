@@ -35,22 +35,42 @@ class MyCamera extends Component {
         })
         .catch(e => console.log(e))
      }
+     Sacarfoto(){
+        this.metodosDeCamara.takePictureAsync()
+         .then(photo =>{
+            this.setState({
+                urlInternaFoto: photo.uri, //ruta interna foto
+                mostrarCamara: false //escondemos camara p mostrar preview foto usuario
+                
+            })
+         })
+
+         .catch( e => console.log(e))
+     }
     render(){
         return(
             <View style={ styles.container}>
-                <Camera 
-                    type={Camera.Constants.Type.front}
-                    ref= { metodosDeCamara => this.metodosDeCamara = metodosDeCamara}
-                    style = { styles.cameraBody }
+                {
+                    this.state.permisos?
+                    <React.Fragment> 
+                        <Camera 
+                        type={Camera.Constants.Type.front}
+                        ref= { metodosDeCamara => this.metodosDeCamara = metodosDeCamara}
+                        style = { styles.cameraBody } 
                 />
                   {/* <Image
                             style={styles.preview}
                             source={{uri: this.state.urlTemporal}}
-                            resizeMode='cover'
+                            resizeMode='cover' 
                         /> */}
-                <TouchableOpacity onPress={(this.sacarFoto)} style = { styles.button }>
-                    <Text >Sacar Foto</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={(this.sacarFoto)} style = { styles.button }>
+                        <Text >Sacar Foto</Text>
+                    </TouchableOpacity>
+                    </React.Fragment>
+                    :
+                    <Text> La camara no tiene permiso </Text>
+
+                } 
             </View>
         )
 
