@@ -60,6 +60,7 @@ class UnPost extends Component {
 
 
 render() {
+  console.log(this.props.postData.data.comentario)
   return (
     <View>
       <Image
@@ -84,9 +85,15 @@ render() {
           <TouchableOpacity style={styles.button} onPress={() => this.darLike()}>
             <Text> dar like</Text>
           </TouchableOpacity>
+          
 
 
       }
+      <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate("Comments", {info: this.props.postData}) }>
+      <Text> Cantidad de comentarios: {this.props.postData.data.comentarios != undefined ? this.props.postData.data.comentarios.length : 0}</Text>
+          </TouchableOpacity>
+       
+       
 
 
 

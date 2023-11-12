@@ -1,9 +1,10 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
 
+
 import Profile from '../screens/profile';
 import NewPost from '../screens/newPost';
-import Home from '../screens/home';
+import ProfileNav from './profileNav';
 import Buscar from '../screens/buscar';
 
 import { TouchableOpacity } from 'react-native';
@@ -24,7 +25,7 @@ class HomeMenu extends Component{
             <Tab.Navigator>
                 <Tab.Screen 
                     name="Home" 
-                    component={ Home }  
+                    component={ ProfileNav }  
                     options={
                         {
                             // tabBarIcon: ()=> <FontAwesome name="home" size={26} color="#926F5B" />,

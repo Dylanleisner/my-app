@@ -30,7 +30,6 @@ class Home extends Component {
   }
 
   render() { 
-    console.log(this.state.posts)
     return (
       
       <View style = { styles.scroll} >
@@ -38,7 +37,7 @@ class Home extends Component {
         <FlatList 
                     data={this.state.posts}
                     keyExtractor={ onePost => onePost.id.toString()}
-                    renderItem={ ({item}) => <UnPost postData={item} />}
+                    renderItem={ ({item}) => <UnPost postData={item} navigation={this.props.navigation} />}
                 />  
         
       </View>
