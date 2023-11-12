@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList,TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { db } from '../firebase/config';
+import UnPost from '../components/unPost';
 
 class Home extends Component {
   constructor() {
@@ -31,13 +32,26 @@ class Home extends Component {
   render() { 
     console.log(this.state.posts)
     return (
-      <View>
+      
+      <View style = { styles.scroll} >
         <Text >Home</Text>
+        <FlatList 
+                    data={this.state.posts}
+                    keyExtractor={ onePost => onePost.id.toString()}
+                    renderItem={ ({item}) => <UnPost postData={item} />}
+                />  
         
       </View>
     );
   }
 }
+const styles = StyleSheet.create({
+  scroll:{
+    flex: 1
+  }
+
+})
+
 
 
 export default Home;

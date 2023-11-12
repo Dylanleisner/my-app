@@ -61,6 +61,14 @@ class MyCamera extends Component {
             .catch( e => console.log(e))
 
     }
+    cancelar(){
+        this.setState({
+            urlInternaFoto: '', 
+            mostrarCamara: true
+           
+        })
+    }
+
 
 
     render(){
@@ -81,7 +89,7 @@ class MyCamera extends Component {
                             <TouchableOpacity onPress={ () => this.guardarFoto() }>
                                 <Text>Aceptar</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity >
+                            <TouchableOpacity onPress={ () => this.cancelar() } >
                                 <Text>Cancelar</Text>
                             </TouchableOpacity>
                         </React.Fragment>
@@ -112,14 +120,16 @@ class MyCamera extends Component {
 
 const styles = StyleSheet.create({
     container:{
-        //flex:1,
-    },
-    cameraBody: {
-        flex:7
+        flex:1,
     },
     button:{
         flex:2,
-    }
+    },
+    cameraBody: {
+        height: '50vh'
+        
+    },
+
 })
 
 export default MyCamera

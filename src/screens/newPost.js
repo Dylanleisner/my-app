@@ -20,6 +20,7 @@ class NewPost extends Component {
   }
 
   crearPost(){
+    console.log(this.state)
     db.collection('posts')
           .add({
             owner: auth.currentUser.email,
@@ -38,6 +39,11 @@ class NewPost extends Component {
           .catch((error) => console.log(error));
       }
     
+      onImageUpload(url){
+        this.setState({
+            imagen:url
+        })
+    }
 
   render() {
     return (
@@ -50,7 +56,11 @@ class NewPost extends Component {
           onChangeText={(text) => this.setState({ errors: '', descripcion: text })}
           value={this.state.descripcion}
         />
-        <MyCamera />
+        {this.state.imagen == '' ? <MyCamera traerUrlDeFoto = {(url)=> this.onImageUpload(url) } /> 
+        :  <Text >Imagen Subida </Text>
+    }
+    
+
         
                      
         
