@@ -146,4 +146,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Buscar
+export default Buscar;
