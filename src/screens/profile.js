@@ -5,8 +5,6 @@ import firebase from 'firebase';
 
 
 
-
-
 class Profile extends Component {
   constructor() {
     super();
