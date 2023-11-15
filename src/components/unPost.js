@@ -74,6 +74,10 @@ class UnPost extends Component {
           </TouchableOpacity>
         )}
 
+          <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('Profile', {mail: this.props.postData.data.owner})}>
+            <Text style={styles.buttonText}>Nombre de usuario : {this.props.postData.data.owner}</Text>
+          </TouchableOpacity>
+
         <TouchableOpacity
           style={styles.button}
           onPress={() => this.props.navigation.navigate('Comments', { info: this.props.postData })}
