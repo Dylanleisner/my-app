@@ -6,113 +6,125 @@ import UnPost from '../components/unPost';
 
 
 
-
 class Profile extends Component {
   constructor() {
     super();
     this.state = {
-      minibio : '',
-      nombreUsuario : '',
-      mail : '',
-      fotoPerfil : '',
-      posts : [],
-      miPerfil : false,
-
+      minibio: '',
+      nombreUsuario: '',
+      mail: '',
+      fotoPerfil: '',
+      posts: [],
+      miPerfil: false,
     };
   }
-  
-componentDidMount(){
-  console.log(this.props.route.params)
 
-  let usuario = this.props.route.params === undefined ? auth.currentUser.email : this.props.route.params.mail
+  componentDidMount() {
+    console.log(this.props.route.params);
 
-  db.collection('usuarios').where('owner', '==',  usuario).onSnapshot(
+    let usuario = this.props.route.params === undefined ? auth.currentUser.email : this.props.route.params.mail;
 
-    documentos => {
-      let usuarios = [];
-      documentos.forEach(doc => {
-        usuarios.push({
-          id: doc.id,
-          data: doc.data(),
-        });
+    db.collection('usuarios')
+      .where('owner', '==', usuario)
+      .onSnapshot((documentos) => {
+        let usuarios = [];
+        documentos.forEach((doc) => {
+          usuarios.push({
+            id: doc.id,
+            data: doc.data(),
+          });
 
-        this.setState({
-          mail: usuarios[0].data.owner,
-          minibio :  usuarios[0].data.mini_bio,
-          nombreUsuario :  usuarios[0].data.nombre_usuario,
-          fotoPerfil :  usuarios[0].data.foto_perfil,
-          miPerfil :  usuarios[0].data.owner === auth.currentUser.email ? true : false
-
+          this.setState({
+            mail: usuarios[0].data.owner,
+            minibio: usuarios[0].data.mini_bio,
+            nombreUsuario: usuarios[0].data.nombre_usuario,
+            fotoPerfil: usuarios[0].data.foto_perfil,
+            miPerfil: usuarios[0].data.owner === auth.currentUser.email ? true : false,
+          });
         });
       });
-    })
-  db.collection('posts').where('owner', '==',  usuario).onSnapshot(
-        documentos => {
-          let posts = [];
-          documentos.forEach(doc => {
-            posts.push({
-              id: doc.id,
-              data: doc.data(),
-            });
-            this.setState({
-              posts: posts,
-            });
+
+    db.collection('posts')
+      .where('owner', '==', usuario)
+      .onSnapshot((documentos) => {
+        let posts = [];
+        documentos.forEach((doc) => {
+          posts.push({
+            id: doc.id,
+            data: doc.data(),
           });
-        }
-      )
+          this.setState({
+            posts: posts,
+          });
+        });
+      });
+  }
 
-}
-
-  desloguearte(){
-    firebase.auth().signOut().then(()=>{this.props.navigation.navigate('Login')})
+  desloguearte() {
+    firebase.auth().signOut().then(() => {
+      this.props.navigation.navigate('Login');
+    });
   }
 
   render() {
-    console.log(this.state,)
+    console.log(this.state);
     return (
-      <View style={styles.container} >
-        <Text >Profile</Text>
-        <Text >minibio : {this.state.minibio}</Text>
-        <Text >mail : {this.state.mail}</Text>
-        <Text >nombreUsuario : {this.state.nombreUsuario}</Text>
-        <Image
-          style={styles.foto}
-          source={{ uri: this.state.foto_perfil}}
-          resizeMode='cover'
-        />
+      <View style={styles.container}>
+        <Text style={styles.titulo}>Profile</Text>
+        <Text style={styles.infoText}>Minibio: {this.state.minibio}</Text>
+        <Text style={styles.infoText}>Mail: {this.state.mail}</Text>
+        <Text style={styles.infoText}>Nombre de Usuario: {this.state.nombreUsuario}</Text>
+        <Image style={styles.foto} source={{ uri: this.state.fotoPerfil }} resizeMode='cover' />
 
-        <FlatList
+        <FlatList 
           data={this.state.posts}
-          keyExtractor={onePost => onePost.id.toString()}
+          keyExtractor={(onePost) => onePost.id.toString()}
           renderItem={({ item }) => <UnPost postData={item} navigation={this.props.navigation} />}
         />
 
-        {this.state.miPerfil === true ?         
-        <TouchableOpacity onPress={() => this.desloguearte()}> 
-          <Text>Desloguear</Text>
-        </TouchableOpacity> : <></>}
-
-
+        {this.state.miPerfil === true ? (
+          <TouchableOpacity onPress={() => this.desloguearte()}>
+            <Text style={styles.buttonText}>Desloguear</Text>
+          </TouchableOpacity>
+        ) : (
+          <></>
+        )}
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-
-  foto: {
-    height: 300,
-    width: '100%',
-    borderRadius: 8,
-  },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white', // Fondo negro
+    backgroundColor: 'black', // Fondo negro
   },
-
+  titulo: {
+    color: '#D32F2F', // Texto rojo
+    fontWeight: 'bold',
+    fontSize: 35,
+    marginBottom: 20,
+  },
+  infoText: {
+    color: '#D32F2F', // Texto rojo
+    fontSize: 18,
+    marginBottom: 10,
+  },
+  foto: {
+    height: 300,
+    width: '100%',
+    borderRadius: 8,
+    marginBottom: 20,
+  },
+  buttonText: {
+    color: '#D32F2F', // Texto rojo
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop: 10,
+  },
+ 
 });
 
 export default Profile;
-
