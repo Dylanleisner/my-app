@@ -20,9 +20,9 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.route.params);
 
     let usuario = this.props.route.params === undefined ? auth.currentUser.email : this.props.route.params.mail;
+    console.log(usuario, 'hola', this.props.route.params)
 
     db.collection('usuarios')
       .where('owner', '==', usuario)

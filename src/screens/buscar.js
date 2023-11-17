@@ -51,7 +51,7 @@ class Buscar extends Component {
   }
 
   render() {
-    console.log(this.state.usuarioFiltradoMail)
+    console.log(this.state.usuarioFiltrado)
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Buscar</Text>
@@ -76,7 +76,7 @@ class Buscar extends Component {
                 <TouchableOpacity
                   onPress={() =>
                     this.props.navigation.navigate('Profile', {
-                      email: item.data.owner })} >
+                      mail: item.data.owner })} >
                   <View style={styles.userContainer}>
                     <Text style={styles.userInfo} >Nombre de usuario:</Text>
                     <Text style={styles.userColor}>{item.data.nombre_usuario}</Text>
@@ -89,7 +89,7 @@ class Buscar extends Component {
               renderItem={({ item }) => (
                 <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate('Profile', { email: item.post.owner })}>
+                    this.props.navigation.navigate('Profile', { mail: item.data.owner })}>
                   <View style={styles.userContainer}>
                     <Text style={styles.userInfo}>Email:</Text>
                     <Text style={styles.userColor}>{item.data.owner}</Text>
