@@ -74,6 +74,11 @@ class Profile extends Component {
         <Text style={styles.infoText}>Mail: {this.state.mail}</Text>
         <Text style={styles.infoText}>Nombre de Usuario: {this.state.nombreUsuario}</Text>
         <Image style={styles.foto} source={{ uri: this.state.fotoPerfil }} resizeMode='cover' />
+        {/* <Image
+                        style={styles.foto}
+                        source={this.state.user[0].data.foto}
+                        resizeMode='cover'
+                    />  */}
 
         <FlatList 
           data={this.state.posts}

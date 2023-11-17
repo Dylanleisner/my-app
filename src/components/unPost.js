@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, FlatList } from 'react-native';
 import { auth, db } from '../firebase/config';
 import firebase from 'firebase';
 
@@ -8,12 +8,14 @@ class UnPost extends Component {
     super();
     this.state = {
       likes: [],
+      comentarios: [],
     };
   }
 
   componentDidMount() {
     this.setState({
-      likes: this.props.postData.data.likes,
+      likes: this.props.postData.data.likes || [],
+      comentarios: this.props.postData.data.comentarios || [],
     });
   }
 
@@ -51,7 +53,6 @@ class UnPost extends Component {
   }
 
   render() {
-    console.log(this.props.postData.data.comentario);
     return (
       <View style={styles.container}>
         <Image
@@ -74,29 +75,42 @@ class UnPost extends Component {
           </TouchableOpacity>
         )}
 
-          <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('Profile', {mail: this.props.postData.data.owner})}>
-            <Text style={styles.buttonText}>Nombre de usuario : {this.props.postData.data.owner}</Text>
-          </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('Profile', {mail: this.props.postData.data.owner})}>
+          <Text style={styles.buttonText}>Nombre de usuario : {this.props.postData.data.owner}</Text>
+        </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
           onPress={() => this.props.navigation.navigate('Comments', { info: this.props.postData })}
         >
           <Text style={styles.buttonText}>
-            Cantidad de comentarios: {this.props.postData.data.comentarios !== undefined ? this.props.postData.data.comentarios.length : 0}
+            Cantidad de comentarios: {this.state.comentarios.length}
           </Text>
         </TouchableOpacity>
+
+      
+        <FlatList
+          data={this.state.comentarios.slice(0, 4)} 
+          keyExtractor={(item, index) => `${index}_${item.fecha}`} 
+          renderItem={({ item }) => (
+            <View style={styles.comentarioContainer}>
+              <Text style={styles.comentarioUsuario}>{item.usuario}</Text>
+              <Text style={styles.comentarioTexto}>{item.comentario}</Text>
+            </View>
+          )}
+        />
       </View>
     );
   }
 }
 
+
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
-    backgroundColor: '#1a1a1a', 
-    borderRadius: 8,
-    padding: 10,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'black', // Fondo negro
   },
   foto: {
     height: 300,
@@ -104,29 +118,38 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   text: {
-    color: 'white',
-    fontSize: 16,
-    marginTop: 10,
+    color: '#FFEBEE',
+    fontSize: 18,
+    marginBottom: 10,
   },
   textLike: {
-    color: '#D32F2F',
-    fontSize: 16,
-    marginTop: 10,
-    fontWeight: 'bold',
+    color: '#FFEBEE',
+    fontSize: 18,
+    marginBottom: 10,
   },
   button: {
-    marginTop: 10,
     backgroundColor: '#D32F2F',
     padding: 10,
-    borderRadius: 5,
-    alignItems: 'center',
+    borderRadius: 8,
+    marginVertical: 5,
   },
   buttonText: {
-    color: 'white',
+    color: '#FFEBEE',
     fontWeight: 'bold',
+  },
+  comentarioContainer: {
+    backgroundColor: '#333', 
+    padding: 8,
+    marginVertical: 4,
+    borderRadius: 8,
+  },
+  comentarioUsuario: {
+    color: '#D32F2F',
+    fontWeight: 'bold',
+  },
+  comentarioTexto: {
+    color: '#FFEBEE',
   },
 });
 
 export default UnPost;
-
-
