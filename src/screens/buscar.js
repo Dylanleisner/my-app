@@ -51,6 +51,7 @@ class Buscar extends Component {
   }
 
   render() {
+    console.log(this.state.usuarioFiltradoMail)
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Buscar</Text>
@@ -74,29 +75,21 @@ class Buscar extends Component {
               renderItem={({ item }) => (
                 <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate('My profile', {
-                      email: item.data.owner,
-                    })
-                  }
-                >
+                    this.props.navigation.navigate('Profile', {
+                      email: item.data.owner })} >
                   <View style={styles.userContainer}>
                     <Text style={styles.userInfo} >Nombre de usuario:</Text>
                     <Text style={styles.userColor}>{item.data.nombre_usuario}</Text>
                   </View>
                 </TouchableOpacity>
-              )}
-            />
+              )}/>
             <FlatList
               data={this.state.usuarioFiltradoMail}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => (
                 <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate('My profile', {
-                      email: item.data.owner,
-                    })
-                  }
-                >
+                    this.props.navigation.navigate('Profile', { email: item.post.owner })}>
                   <View style={styles.userContainer}>
                     <Text style={styles.userInfo}>Email:</Text>
                     <Text style={styles.userColor}>{item.data.owner}</Text>

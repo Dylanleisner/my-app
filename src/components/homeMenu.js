@@ -28,7 +28,7 @@ class HomeMenu extends Component{
                     component={ ProfileNav }  
                     options={
                         {
-                            // tabBarIcon: ()=> <FontAwesome name="home" size={26} color="#926F5B" />,
+                            
                             headerShown: false
                         }                     
                     } />
@@ -37,7 +37,7 @@ class HomeMenu extends Component{
                     component={ Profile }  
                     options={
                         {
-                            // tabBarIcon: ()=> <Ionicons name="person-circle" size={26} color="#926F5B" />,
+                            
                             headerShown: false,
                             
                         }
@@ -48,7 +48,7 @@ class HomeMenu extends Component{
                     component={ NewPost }  
                     options={
                         {
-                            // tabBarIcon: ()=> <MaterialIcons name="add-a-photo" size={26} color="#926F5B" />,
+                        
                             headerShown: false,
                         }
                     }/>
@@ -57,7 +57,7 @@ class HomeMenu extends Component{
                     name="Buscar" component={ Buscar }  
                     options={
                         {
-                            // tabBarIcon: ()=> <FontAwesome name="search" size={26} color="#926F5B" />,
+                          
                             headerShown: false,
                         } 
                     } />

@@ -67,7 +67,6 @@ class Profile extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <View style={styles.container}>
         <Text style={styles.titulo}>Profile</Text>
