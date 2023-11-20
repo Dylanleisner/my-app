@@ -1,7 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
-
 import Home from '../screens/home';
 import Comentario from '../screens/comentarios';
 import Profile from '../screens/profile';

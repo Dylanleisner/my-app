@@ -112,7 +112,7 @@ class Register extends Component {
                 >
                 <Text>REGISTRARME</Text>
                 </TouchableOpacity>
-                 {/* } */}
+                
         <Text style={styles.errorText}>{this.state.errors.message}</Text>
       </View>
     );
@@ -124,10 +124,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white', // Fondo blanco
+    backgroundColor: 'white', 
   },
   titulo: {
-    color: '#D32F2F', // Texto rojo
+    color: '#D32F2F',
     fontWeight: 'bold',
     fontSize: 35,
     marginBottom: 20,

@@ -1,14 +1,10 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
-
-
 import Profile from '../screens/profile';
 import NewPost from '../screens/newPost';
 import ProfileNav from './profileNav';
 import Buscar from '../screens/buscar';
-
 import { TouchableOpacity } from 'react-native';
-
 import { auth } from '../firebase/config';
 import { Component } from 'react';
 

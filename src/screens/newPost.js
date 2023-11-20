@@ -73,10 +73,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black', // Fondo negro
+    backgroundColor: 'black',  
   },
   titulo: {
-    color: '#D32F2F', // Texto rojo
+    color: '#D32F2F', 
     fontWeight: 'bold',
     fontSize: 35,
     marginBottom: 20,

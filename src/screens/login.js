@@ -116,5 +116,5 @@ const styles = StyleSheet.create({
 export default Login;
 
 
-// mismo procedimiento para todos los screens.
+
 

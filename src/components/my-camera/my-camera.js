@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#D32F2F', // Fondo rojo
+    backgroundColor: '#D32F2F', 
     padding: 10,
   },
   button: {
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   errorText: {
-    backgroundColor: '#D32F2F', // Fondo rojo
+    backgroundColor: '#D32F2F', 
     color: 'white',
     padding: 10,
     borderRadius: 5,
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   captureButton: {
-    backgroundColor: '#D32F2F', // Fondo rojo
+    backgroundColor: '#D32F2F', 
     padding: 10,
     borderRadius: 5,
     margin: 20,

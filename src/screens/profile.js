@@ -74,11 +74,7 @@ class Profile extends Component {
         <Text style={styles.infoText}>Mail: {this.state.mail}</Text>
         <Text style={styles.infoText}>Nombre de Usuario: {this.state.nombreUsuario}</Text>
         <Image style={styles.foto} source={{ uri: this.state.fotoPerfil }} resizeMode='cover' />
-        {/* <Image
-                        style={styles.foto}
-                        source={this.state.user[0].data.foto}
-                        resizeMode='cover'
-                    />  */}
+       
 
         <FlatList 
           data={this.state.posts}
@@ -103,16 +99,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black', // Fondo negro
+    backgroundColor: 'black', 
   },
   titulo: {
-    color: '#D32F2F', // Texto rojo
+    color: '#D32F2F', 
     fontWeight: 'bold',
     fontSize: 35,
     marginBottom: 20,
   },
   infoText: {
-    color: '#D32F2F', // Texto rojo
+    color: '#D32F2F', 
     fontSize: 18,
     marginBottom: 10,
   },
@@ -123,7 +119,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   buttonText: {
-    color: '#D32F2F', // Texto rojo
+    color: '#D32F2F', 
     fontSize: 18,
     fontWeight: 'bold',
     marginTop: 10,
